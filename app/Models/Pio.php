@@ -5,13 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class Pio extends Model{
-    private $title;
-    private $contents;
-    private $image_url;
+    protected $fillable=[
+        'title','contents','image_url'
+    ];
     private User $user_id;
 
     function user(){
         return $this->belongsTo(User::class);
+    }
+
+    function comments(){
+        return $this->hasMany(Comment::class);
     }
 }
 

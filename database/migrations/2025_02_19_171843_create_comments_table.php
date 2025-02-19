@@ -3,6 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\User;
+use App\Models\Pio;
+
 
 return new class extends Migration
 {
@@ -13,6 +16,10 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
+            $table->text('title');
+            $table->text('contents');
+            $table->foreignIdFor(User::class)->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId(Pio::class)->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

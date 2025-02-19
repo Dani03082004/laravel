@@ -10,4 +10,10 @@ class HomeController extends Controller{
         $pios=Pio::all();
         return view('home',['pios'=>$pios]);    
     }
+    function contact(){
+        return view('pages.contact');
+    }
+    function about(){
+        return view('pages.about');
+    }
 }

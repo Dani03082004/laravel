@@ -10,6 +10,8 @@ class Pio extends Model{
     private $image_url;
     private User $user_id;
 
-    
+    function user(){
+        return $this->belongsTo(User::class);
+    }
 }
 

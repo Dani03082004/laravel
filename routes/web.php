@@ -3,12 +3,13 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Models\Pio;
+use App\Http\Controllers\PioController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class,'index'])->name('home');
 Route::get('/about', [HomeController::class,'about']);
 Route::get('/contact', [HomeController::class,'contact']);
-
+require __DIR__.'/auth.php';
 
 Route::get('/dashboard', function () {
     $pios=Pio::all();
@@ -21,4 +22,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+// Rutas Recurso
+Route::resource('pios', PioController::class);
